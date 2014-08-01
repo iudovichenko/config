@@ -27,7 +27,7 @@ func parseProperties(content string) (*Properties, error) {
 		if len(strings.TrimSpace(line)) == 0 {
 			continue
 		}
-		tokens := strings.Split(line, "=")
+		tokens := strings.SplitN(line, "=", 2)
 		if len(tokens) != 2 {
 			return nil, BAD_PROPERTY
 		}
