@@ -2,6 +2,7 @@ package config
 
 import (
 	"io/ioutil"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -36,6 +37,16 @@ func parseProperties(content string) (*Properties, error) {
 		if len(key) == 0 || len(val) == 0 {
 			return nil, BAD_PROPERTY
 		}
+
+		// check if we should substitute an environment variable
+		if val[0] == '$' {
+			if len(val) <= 1 {
+				return nil, BAD_PROPERTY
+			}
+			evar := val[1:]
+			val = os.Getenv(evar)
+		}
+
 		p.props[key] = val
 	}
 	return p, nil

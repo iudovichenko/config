@@ -6,6 +6,14 @@ import (
 	. "github.com/shoenig/assert"
 )
 
+func Test_parseProperties_envvar(t *testing.T) {
+	text := "term=$TERM"
+	p, e := parseProperties(text)
+	Tassert(e == nil, t, "envvar props error")
+	term := p.GetString("term")
+	Tassert(term == "xterm", t, "envvar term props empty")
+}
+
 func Test_parseProperties(t *testing.T) {
 	text := "a=1\nb= beta\nc =3\nd = four\n"
 	_, e := parseProperties(text)
