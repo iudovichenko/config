@@ -30,7 +30,10 @@ func parseProperties(content string) (*Properties, error) {
 		}
 		tokens := strings.SplitN(line, "=", 2)
 		if len(tokens) != 2 {
-			return nil, BAD_PROPERTY
+			tokens = strings.SplitN(line, ":", 2)
+			if len(tokens) != 2 {
+				return nil, BAD_PROPERTY
+			}
 		}
 		key := strings.TrimSpace(tokens[0])
 		val := strings.TrimSpace(tokens[1])
