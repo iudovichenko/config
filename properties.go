@@ -11,6 +11,10 @@ type Properties struct {
 	props map[string]string
 }
 
+func EmptyProperties() *Properties {
+	return &Properties{make(map[string]string)}
+}
+
 func readPropertiesFile(filename string) (*Properties, error) {
 	if b, e := ioutil.ReadFile(filename); e != nil {
 		return nil, e

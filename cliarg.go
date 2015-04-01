@@ -4,6 +4,12 @@ import (
 	"flag"
 )
 
+// ReadProperties reads the specified file for properties
+func ReadProperties(filename string) (*Properties, error) {
+	return readPropertiesFile(filename)
+}
+
+// GetProperties uses the properties file defined by --props
 func GetProperties(required bool) (*Properties, error) {
 	filename := flag.String("props", "", "properties filename")
 	flag.Parse()
