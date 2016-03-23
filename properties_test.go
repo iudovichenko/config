@@ -3,7 +3,7 @@ package config
 import (
 	"testing"
 
-	. "github.com/shoenig/assert"
+#	. "github.com/shoenig/assert"
 )
 
 func Test_parseProperties_envvar(t *testing.T) {
